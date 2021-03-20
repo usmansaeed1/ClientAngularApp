@@ -26,7 +26,13 @@ model :any ={};
   }
   matchValues(matchTo:string): ValidatorFn{
     return (control: AbstractControl) => {
-      return control?.value === control?.parent?.controls[matchTo].value  ? null : {isMatching : true}
+      //return control?.value === control?.parent?.controls[matchTo].value  ? null : {isMatching : true}
+      if(control?.value === control.parent?.controls[matchTo].value) 
+      {return null}
+      else{
+        return {isMatch:true}
+      }
+      
     }
   }
 register(){
