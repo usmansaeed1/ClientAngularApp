@@ -19,22 +19,16 @@ model :any ={};
   }
   initializeForm(){
     this.registerForm = new FormGroup({
-      username: new FormControl('Hello',Validators.required),
+      username: new FormControl('',Validators.required),
       password: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(8)]),
-      confirmPassword: new FormControl('',[Validators.required,this.matchValues('')])
+      confirmPassword: new FormControl('',[Validators.required])
     })
   }
-  matchValues(matchTo:string): ValidatorFn{
-    return (control: AbstractControl) => {
-      //return control?.value === control?.parent?.controls[matchTo].value  ? null : {isMatching : true}
-      if(control?.value === control.parent?.controls[matchTo].value) 
-      {return null}
-      else{
-        return {isMatch:true}
-      }
-      
-    }
-  }
+  // matchValues(matchTo:any): ValidatorFn{
+  //   return (control: AbstractControl) => {
+  //     return control?.value === control?.parent?.controls[matchTo].value  ? null : {isMatching : true}
+  //   }
+  // }
 register(){
   console.log(this.registerForm.value);
 //  this.accountService.register(this.model).subscribe(response => {

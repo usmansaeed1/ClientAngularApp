@@ -1,0 +1,17 @@
+<div class="form-group">
+<input
+[class.is-invalid]="ngControl.touched && ngControl.invalid"
+type={{type}}
+class="form-control"
+[formControl] ={{lable}}
+>
+<div *ngIf="ngControl.control.errors?.requried" class="invalid-feedback"> Please enter a {{lable}}</div>
+<div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">
+    {{lable}} must be at least {{ngControl.control.errors.minlength['requiredlength']}}
+</div>
+<div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">
+    {{lable}} must be at least {{ngControl.control.errors.maxlength['requiredlength']}}
+</div>
+
+
+</div>
