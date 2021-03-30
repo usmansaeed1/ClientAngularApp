@@ -21,14 +21,36 @@ model :any ={};
     this.registerForm = new FormGroup({
       username: new FormControl('',Validators.required),
       password: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(8)]),
-      confirmPassword: new FormControl('',[Validators.required])
+      confirmPassword: new FormControl('',[Validators.required,this.matchValues('password')])
     })
+    this.registerForm.controls.password.valueChanges.subscribe(
+      () => {
+        this.registerForm.controls.confirmPassword.updateValueAndValidity();
+      }
+    )
   }
-  // matchValues(matchTo:any): ValidatorFn{
-  //   return (control: AbstractControl) => {
-  //     return control?.value === control?.parent?.controls[matchTo].value  ? null : {isMatching : true}
-  //   }
-  // }
+  matchValues(matchTo:string ): ValidatorFn  {
+    return (control: AbstractControl | {[key: string]: any} | null) => {
+      
+      if(control?.value === control?.parent?.controls[matchTo].value )
+      {
+       
+        console.log(control?.value);
+        console.log(control?.parent?.controls[matchTo])
+        return  null}
+      else{
+      
+        debugger
+        console.log(control?.value);
+        console.log(control?.parent?.controls[matchTo].value)
+        return {
+        
+          isMatching : true
+        }
+      }
+      
+    }
+  }
 register(){
   console.log(this.registerForm.value);
 //  this.accountService.register(this.model).subscribe(response => {
