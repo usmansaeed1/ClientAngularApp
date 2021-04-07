@@ -29,7 +29,8 @@ model :any ={};
       }
     )
   }
-  matchValues(matchTo:string ): ValidatorFn  {
+
+  validate(matchTo: string) {
     return (control: AbstractControl | {[key: string]: any} | null) => {
       
       if(control?.value === control?.parent?.controls[matchTo].value )
@@ -50,6 +51,11 @@ model :any ={};
       }
       
     }
+  }
+
+  
+  matchValues(matchTo:string ): ValidatorFn  {
+    return this.validate.bind(this, matchTo);
   }
 register(){
   console.log(this.registerForm.value);

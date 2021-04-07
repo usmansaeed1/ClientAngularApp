@@ -3,7 +3,7 @@
 <hr>
 <div class="form-group">
     <input 
-    [class.is-invalid]='registerForm.get("username").errors && registerForm.get("username").touched'
+    [class.is-invalid]="registerForm.controls['username'].errors && registerForm.controls['username'].touched"
     type="text" class="form-control"
     formControlName="username" placeholder="UserName"
     >
@@ -11,21 +11,20 @@
 </div>
 <div class="form-group">
     <input 
-    [class.is-invalid]='registerForm.get("password").errors && registerForm.get("password").touched'
+    [class.is-invalid]="registerForm.controls['password'].errors && registerForm.controls['password'].touched"
     type="password" class="form-control"
     formControlName="password"  placeholder="Password"
     >
-    <div *ngIf="registerForm.get('password').hasError('required')" class="invalid-feedback">Please enter a password</div>
-    <div *ngIf="registerForm.get('password').hasError('minlength')" class="invalid-feedback">Password must be al least 4 character</div>
+    <div *ngIf="registerForm.controls['password'].hasError('required')" class="invalid-feedback">Please enter a password</div>
+    <div *ngIf="registerForm.controls['password'].hasError('minlength')" class="invalid-feedback">Password must be al least 4 character</div>
 </div>
 <div class="form-group">
-    <input 
-     [class.is-invalid]='registerForm.get("confirmPassword").errors && registerForm.get("confirmPassword").touched'
+    <input [class.is-invalid]="registerForm.controls['confirmPassword'].errors && registerForm.controls['confirmPassword'].touched" 
     type="password" class="form-control"
     formControlName="confirmPassword"  placeholder="Confirm Password"
     >
-    <div *ngIf="registerForm.get('confirmPassword').hasError('required')" class="invalid-feedback">Please enter a password</div>
-    <div *ngIf="registerForm.get('confirmPassword').hasError('isMatching')" class="invalid-feedback">Password must be match</div>
+    <div *ngIf="registerForm.controls['confirmPassword'].hasError('required')" class="invalid-feedback">Please enter a password</div>
+    <div *ngIf="registerForm.controls['confirmPassword'].hasError('isMatching')" class="invalid-feedback">Password must be match</div>
 </div>
 <!-- <app-text-input [formControl]='registerForm.controls["username"]' [lable]='"UserName"'></app-text-input> -->
 <div class="form-group text-center">
